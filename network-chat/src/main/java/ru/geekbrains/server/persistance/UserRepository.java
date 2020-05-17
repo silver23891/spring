@@ -1,18 +1,21 @@
 package ru.geekbrains.server.persistance;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.geekbrains.server.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component("userRepository")
 public class UserRepository {
 
     private final Connection conn;
 
-    public UserRepository() throws SQLException {
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/network_chat",
-                "root", "123456");
+    public UserRepository(DataSource dataSource) throws SQLException {
+        this.conn = dataSource.getConnection();
         createTableIfNotExists(conn);
     }
 
