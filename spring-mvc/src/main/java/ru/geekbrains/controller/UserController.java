@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.geekbrains.persist.enity.User;
+import ru.geekbrains.persist.entity.User;
 import ru.geekbrains.persist.repo.UserRepository;
 
 @RequestMapping("/user")

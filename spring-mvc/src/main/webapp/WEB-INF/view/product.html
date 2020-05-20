@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>User</title>
+    <title>Product</title>
 </head>
 
 <body>
@@ -25,10 +25,10 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" th:href="@{/product}">Products</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/user}">Users</a>
             </li>
         </ul>
@@ -42,15 +42,15 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <form th:action="@{/user}" method="post" th:object="${user}">
+            <form th:action="@{/product}" method="post" th:object="${product}">
                 <input th:type="hidden" th:field="*{id}">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" th:field="*{name}" class="form-control"  placeholder="Enter name">
+                    <label for="name">Title</label>
+                    <input type="text" id="name" class="form-control" th:field="*{title}" placeholder="Enter title">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" th:field="*{password}" class="form-control"  placeholder="Enter password">
+                    <label for="price">Price</label>
+                    <input type="number" step="0.01" id="price" class="form-control" th:field="*{cost}" placeholder="Enter price">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
