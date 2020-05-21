@@ -1,7 +1,7 @@
 package ru.geekbrains.persist.repo;
 
 import org.springframework.stereotype.Repository;
-import ru.geekbrains.persist.enity.User;
+import ru.geekbrains.persist.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;

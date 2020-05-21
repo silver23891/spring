@@ -1,4 +1,4 @@
-package ru.geekbrains.persist.enity;
+package ru.geekbrains.persist.entity;
 
 public class User {
 
