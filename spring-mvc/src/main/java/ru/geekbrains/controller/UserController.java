@@ -8,8 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.persist.entity.User;
-import ru.geekbrains.persist.repo.UserRepository;
+import ru.geekbrains.service.UserService;
 
 @RequestMapping("/user")
 @Controller
@@ -17,18 +18,20 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    public String userList(Model model) {
-        logger.info("User list");
+    public String userList(Model model,
+                           @RequestParam("minAge") Integer minAge,
+                           @RequestParam("maxAge") Integer maxAge) {
+        logger.info("User list. With minAge = {} and maxAge = {}", minAge, maxAge);
 
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userService.filterByAge(minAge, maxAge));
         return "users";
     }
 
@@ -44,7 +47,7 @@ public class UserController {
     public String saveUser(User user) {
         logger.info("Save user method");
 
-        userRepository.save(user);
+        userService.save(user);
         return "redirect:/user";
     }
 }

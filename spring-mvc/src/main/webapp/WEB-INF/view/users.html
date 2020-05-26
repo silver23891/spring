@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/product}">Products</a>
+                <a class="nav-link" href="#">Products</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/user}">Users</a>
+                <a class="nav-link" href="#">Users</a>
             </li>
         </ul>
 
@@ -45,12 +45,25 @@
             <a class="btn btn-primary" th:href="@{/user/new}">Add User</a>
         </div>
 
+        <div class="col-12 mt-3">
+            <form>
+                <label for="minAge">Min Age</label>
+                <input type="number" name="minAge" id="minAge"/>
+
+                <label for="maxAge">Max Age</label>
+                <input type="number" name="maxAge" id="maxAge"/>
+
+                <button class="btn btn-primary" type="submit">Filter</button>
+            </form>
+        </div>
+
         <div class="col-12">
             <table class="table table-bordered my-2">
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Age</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -61,6 +74,7 @@
                 <tr th:each="user : ${users}">
                     <th scope="row" th:text="${user.id}">1</th>
                     <td th:text="${user.name}">Alex</td>
+                    <td th:text="${user.age}">21</td>
                     <td>
                         <a class="btn btn-success" href="#"><i class="fas fa-edit"></i></a>
                         <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
@@ -68,6 +82,24 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="col-12">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
