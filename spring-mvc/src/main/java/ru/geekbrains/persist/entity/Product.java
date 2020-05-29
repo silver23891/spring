@@ -1,16 +1,26 @@
 package ru.geekbrains.persist.entity;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "products")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String title;
 
-    private float cost;
+    @Column
+    private BigDecimal cost;
 
     public Product() {
     }
 
-    public Product(Long id, String title, float cost) {
+    public Product(Long id, String title, BigDecimal cost) {
         this.id = id;
         this.title = title;
         this.cost = cost;
@@ -32,11 +42,11 @@ public class Product {
         this.title = title;
     }
 
-    public float getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 }
