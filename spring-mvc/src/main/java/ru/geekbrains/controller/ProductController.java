@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.persist.entity.Product;
 import ru.geekbrains.persist.repo.ProductRepository;
+import ru.geekbrains.service.ProductService;
 
 import java.math.BigDecimal;
 
@@ -16,11 +17,11 @@ import java.math.BigDecimal;
 @Controller
 public class ProductController {
 
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public void setProductRepository(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
@@ -29,15 +30,9 @@ public class ProductController {
             @RequestParam(name = "minCost", required = false) BigDecimal minCost,
             @RequestParam(name = "maxCost", required = false) BigDecimal maxCost
     ) {
-        if (minCost == null && maxCost == null) {
-            model.addAttribute("products", productRepository.findAll());
-        } else if (minCost != null && maxCost == null) {
-            model.addAttribute("products", productRepository.findByCostGreaterThanEqual(minCost));
-        } else if (minCost == null && maxCost != null) {
-            model.addAttribute("products", productRepository.findByCostLessThanEqual(maxCost));
-        } else {
-            model.addAttribute("products", productRepository.findByCostBetween(minCost, maxCost));
-        }
+        model.addAttribute("products", productService.findByParams(minCost, maxCost));
+        model.addAttribute("minCost", minCost);
+        model.addAttribute("maxCost", maxCost);
         return "products";
     }
 
@@ -49,7 +44,7 @@ public class ProductController {
 
     @PostMapping
     public String saveProduct(Product product) {
-        productRepository.save(product);
+        productService.save(product);
         return "redirect:/product";
     }
 
