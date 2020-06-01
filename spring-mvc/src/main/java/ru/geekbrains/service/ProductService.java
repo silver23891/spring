@@ -20,15 +20,15 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Page<Product> findByParams(BigDecimal minCost, BigDecimal maxCost, Pageable pageable) {
+    public Page<Product> findByParams(BigDecimal minCost, BigDecimal maxCost, String title, Pageable pageable) {
         if (minCost == null && maxCost == null) {
-            return productRepository.findAll(pageable);
+            return productRepository.findAll(title, pageable);
         } else if (minCost != null && maxCost == null) {
-            return productRepository.findByCostGreaterThanEqual(minCost, pageable);
+            return productRepository.findByCostGreaterThanEqual(minCost, title, pageable);
         } else if (minCost == null) {
-            return productRepository.findByCostLessThanEqual(maxCost, pageable);
+            return productRepository.findByCostLessThanEqual(maxCost, title, pageable);
         }
-        return productRepository.findByCostBetween(minCost, maxCost, pageable);
+        return productRepository.findByCostBetween(minCost, maxCost, title, pageable);
     }
 
     public List<Product> findAll() {

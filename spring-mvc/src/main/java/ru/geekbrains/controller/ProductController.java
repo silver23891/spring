@@ -34,16 +34,19 @@ public class ProductController {
             @RequestParam(name = "minCost", required = false) BigDecimal minCost,
             @RequestParam(name = "maxCost", required = false) BigDecimal maxCost,
             @RequestParam(name = "page", required = false, defaultValue =  "1") Integer page,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize
+            @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize,
+            @RequestParam(name = "title", required = false, defaultValue = "") String title
     ) {
         Page productsPage = productService.findByParams(
                 minCost,
                 maxCost,
+                title,
                 PageRequest.of(Integer.valueOf(page)-1, Integer.valueOf(pageSize))
         );
         model.addAttribute("productsPage", productsPage);
         model.addAttribute("minCost", minCost);
         model.addAttribute("maxCost", maxCost);
+        model.addAttribute("title", title);
         model.addAttribute(
                 "previousPage",
                 productsPage.hasPrevious() ? productsPage.previousPageable().getPageNumber() + 1 : -1
