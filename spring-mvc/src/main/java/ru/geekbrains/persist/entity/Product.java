@@ -1,6 +1,7 @@
 package ru.geekbrains.persist.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 @Entity
@@ -12,6 +13,7 @@ public class Product {
     private Long id;
 
     @Column
+    @NotBlank
     private String title;
 
     @Column

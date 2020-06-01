@@ -1,6 +1,8 @@
 package ru.geekbrains.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.persist.entity.Product;
 import ru.geekbrains.persist.repo.ProductRepository;
@@ -18,31 +20,19 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> findByParams(BigDecimal minCost, BigDecimal maxCost) {
+    public Page<Product> findByParams(BigDecimal minCost, BigDecimal maxCost, String title, Pageable pageable) {
         if (minCost == null && maxCost == null) {
-            return productRepository.findAll();
+            return productRepository.findAll(title, pageable);
         } else if (minCost != null && maxCost == null) {
-            return productRepository.findByCostGreaterThanEqual(minCost);
+            return productRepository.findByCostGreaterThanEqual(minCost, title, pageable);
         } else if (minCost == null) {
-            return productRepository.findByCostLessThanEqual(maxCost);
+            return productRepository.findByCostLessThanEqual(maxCost, title, pageable);
         }
-        return productRepository.findByCostBetween(minCost, maxCost);
+        return productRepository.findByCostBetween(minCost, maxCost, title, pageable);
     }
 
     public List<Product> findAll() {
         return productRepository.findAll();
-    }
-
-    public List<Product> findByCostGreaterThanEqual(BigDecimal minCost) {
-        return productRepository.findByCostGreaterThanEqual(minCost);
-    }
-
-    public List<Product> findByCostLessThanEqual(BigDecimal maxCost) {
-        return productRepository.findByCostLessThanEqual(maxCost);
-    }
-
-    public List<Product> findByCostBetween(BigDecimal minCost, BigDecimal maxCost) {
-        return productRepository.findByCostBetween(minCost, maxCost);
     }
 
     public Optional<Product> findById(Long id) {
