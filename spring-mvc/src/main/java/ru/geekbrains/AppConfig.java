@@ -18,7 +18,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan("ru.geekbrains")
+@ComponentScan("ru.ru.geekbrains")
 public class AppConfig implements WebMvcConfigurer {
 
     private ApplicationContext context;
