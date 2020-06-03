@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("ru.ru.geekbrains.persist.repo")
+@EnableJpaRepositories("ru.geekbrains.persist.repo")
 public class AppPersistConfig {
 
     @Bean(name="dataSource")
@@ -45,7 +45,7 @@ public class AppPersistConfig {
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         // Указание пакета, в котором будут находиться классы-сущности
-        factory.setPackagesToScan("ru.ru.geekbrains.persist.entity");
+        factory.setPackagesToScan("ru.geekbrains.persist.entity");
 
         // Создание свойств для настройки Hibernate
         factory.setJpaProperties(jpaProperties());

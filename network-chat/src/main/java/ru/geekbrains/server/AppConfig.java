@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-@ComponentScan("ru.ru.geekbrains.server")
+@ComponentScan("ru.geekbrains.server")
 public class AppConfig {
     @Bean
     public DataSource dataSource() {

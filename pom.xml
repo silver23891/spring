@@ -11,7 +11,6 @@
         <module>network-chat</module>
         <module>spring-mvc</module>
         <module>console-shop</module>
-        <module>spring-boot</module>
     </modules>
 
     <packaging>pom</packaging>

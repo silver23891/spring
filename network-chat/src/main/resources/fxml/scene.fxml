@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane fx:controller="ru.ru.geekbrains.client.javafx.controller.Controller" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:controller="ru.geekbrains.client.javafx.controller.Controller" xmlns:fx="http://javafx.com/fxml">
 
         <VBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
