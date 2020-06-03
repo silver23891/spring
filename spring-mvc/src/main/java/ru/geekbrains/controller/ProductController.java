@@ -6,10 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persist.entity.Product;
 import ru.geekbrains.service.ProductService;
 
@@ -85,4 +82,9 @@ public class ProductController {
         return "redirect:/product";
     }
 
+    @DeleteMapping
+    public String deleteProduct(@RequestParam("id") Long id) {
+        productService.delete(id);
+        return "redirect:/product";
+    }
 }

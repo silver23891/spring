@@ -103,7 +103,9 @@
                     <td th:text="${product.cost}">$2000</td>
                     <td>
                         <a class="btn btn-success" th:href="@{/product/update(productId=${product.id})}"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
+                        <form th:action="@{/product(id=${product.id})}" th:method="delete">
+                            <button class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
