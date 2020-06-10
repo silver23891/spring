@@ -1,0 +1,4 @@
+curl http://localhost:8080/mvc-app/api/v1/product/all
+curl -H 'Content-Type:application/json' -X POST --data '{"title":"Product 002", "cost":1.10}' http://localhost:8080/mvc-app/api/v1/product
+curl -H 'Content-Type:application/json' -X PUT --data '{"id":20, "title":"Product 001", "cost":1.10}' http://localhost:8080/mvc-app/api/v1/product
+curl -X DELETE http://localhost:8080/mvc-app/api/v1/product/5
