@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.persist.entity.User;
+import ru.geekbrains.service.RoleService;
 import ru.geekbrains.service.UserService;
 
 @RequestMapping("/user")
@@ -19,16 +20,18 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private UserService userService;
+    private RoleService roleService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping
     public String userList(Model model,
-                           @RequestParam("minAge") Integer minAge,
-                           @RequestParam("maxAge") Integer maxAge) {
+                           @RequestParam(value = "minAge", required = false) Integer minAge,
+                           @RequestParam(value = "maxAge", required = false) Integer maxAge) {
         logger.info("User list. With minAge = {} and maxAge = {}", minAge, maxAge);
 
         model.addAttribute("users", userService.filterByAge(minAge, maxAge));
@@ -40,6 +43,7 @@ public class UserController {
         logger.info("Create user form");
 
         model.addAttribute("user", new User());
+        model.addAttribute("roles", roleService.findAll());
         return "user";
     }
 

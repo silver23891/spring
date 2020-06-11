@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.geekbrains.persist.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -12,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByName(String name);
 
     List<User> findByAgeGreaterThan(Integer age);
+
+    Optional<User> findUserByName(String name);
 }
