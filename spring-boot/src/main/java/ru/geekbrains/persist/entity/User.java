@@ -1,6 +1,7 @@
 package ru.geekbrains.persist.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -13,11 +14,19 @@ public class User {
     @Column(length = 32)
     private String name;
 
-    @Column(length = 32)
+    @Column(length = 256)
     private String password;
 
     @Column
     private Integer age;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     public User() {
     }
@@ -58,5 +67,13 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
